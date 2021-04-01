@@ -14,7 +14,7 @@
         "outputPath": "/Users/leaduvigneau/Documents/ynov/b2/dotnet_pont_chaban/BridgeMonitor/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/leaduvigneau/.nuget/NuGet/NuGet.Config"
+          "/Users/leaduvigneau/.config/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
