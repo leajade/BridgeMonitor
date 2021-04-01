@@ -26,7 +26,7 @@ namespace BridgeMonitor.Controllers
             return View(fermetures);
         }
 
-        public IActionResult Clothings()
+        public IActionResult Closings()
         {
             var fermetures = GetFermeturesFromApi();
             return View(fermetures);
