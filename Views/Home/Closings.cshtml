@@ -9,66 +9,72 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<h2>Les futures dates de fermeture</h2>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Nom</th>
-            <th>Type de fermeture</th>
-            <th>Date de fermeture</th>
-            <th>Date de réouverture</th>
-            <th>Durée de la fermeture en heure</th>
-        </tr>
-    </thead>
-    <tbody>
+<div class="card">
+    <h5 class="card-header">Les futures dates de fermeture</h5>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Type de fermeture</th>
+                    <th>Date de fermeture</th>
+                    <th>Date de réouverture</th>
+                    <th>Durée de la fermeture en heure</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var fermetures in Model)
+                {
+                TimeSpan diff = @fermetures.ReopeningDate - @fermetures.ClosingDate;
 
-        @foreach (var fermetures in Model)
-        {
-            TimeSpan diff = @fermetures.ReopeningDate - @fermetures.ClosingDate;
-
-        <tr>
-        @if (@fermetures.ClosingDate > LocalDate)
-        {
-            <td>@fermetures.BoatName</td>
-            <td>@fermetures.ClosingType</td>
-            <td>@fermetures.ClosingDate.ToString("dddd MMMM yyyy, HH:mm:ss")</td>
-            <td>@fermetures.ReopeningDate.ToString("dddd MMMM yyyy, HH:mm:ss")</td>
-            <td>@diff</td>
-        }
-        </tr>
-        }
-    </tbody>
-</table>
-
-
-<h2>Les précédentes dates de fermeture</h2>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Nom</th>
-            <th>Type de fermeture</th>
-            <th>Date de fermeture</th>
-            <th>Date de réouverture</th>
-            <th>Durée de la fermeture en heure</th>
-        </tr>
-    </thead>
-    <tbody>
-
-        @foreach (var fermetures in Model)
-        {
-            TimeSpan diff = @fermetures.ReopeningDate - @fermetures.ClosingDate;
-        <tr>
-
-
-            @if (@fermetures.ClosingDate < LocalDate)
-            {
-            <td>@fermetures.BoatName</td>
-            <td>@fermetures.ClosingType</td>
-            <td>@fermetures.ClosingDate.ToString("dddd MMMM yyyy, HH:mm:ss")</td>
-            <td>@fermetures.ReopeningDate.ToString("dddd MMMM yyyy, HH:mm:ss")</td>
-            <td>@diff</td>
+                <tr>
+                @if (@fermetures.ClosingDate > LocalDate)
+                {
+                    <td><a asp-action="Details" asp-route-closingDate="@fermetures.ClosingDate">@fermetures.BoatName</a></td>
+                    <td>@fermetures.ClosingType</td>
+                    <td>@fermetures.ClosingDate.ToString("dddd dd MMMM yyyy, HH:mm:ss")</td>
+                    <td>@fermetures.ReopeningDate.ToString("dddd dd MMMM yyyy, HH:mm:ss")</td>
+                    <td>@diff</td>
+                    }
+                </tr>
             }
+            </tbody>
+        </table>
+    </div>
+</div>
 
-        </tr>}
-    </tbody>
-</table>
+<div class="card">
+    <h5 class="card-header">Les précédentes dates de fermeture</h5>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Type de fermeture</th>
+                    <th>Date de fermeture</th>
+                    <th>Date de réouverture</th>
+                    <th>Durée de la fermeture en heure</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var fermetures in Model)
+                {
+                    TimeSpan diff = @fermetures.ReopeningDate - @fermetures.ClosingDate;
+                <tr>
+
+
+                    @if (@fermetures.ClosingDate < LocalDate)
+                    {
+                    <td><a asp-action="Details" asp-route-closingDate="@fermetures.ClosingDate">@fermetures.BoatName</a></td>
+                    <td>@fermetures.ClosingType</td>
+                    <td>@fermetures.ClosingDate.ToString("dddd dd MMMM yyyy, HH:mm:ss")</td>
+                    <td>@fermetures.ReopeningDate.ToString("dddd dd MMMM yyyy, HH:mm:ss")</td>
+                    <td>@diff</td>
+                    }
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -23,7 +23,7 @@ namespace BridgeMonitor.Controllers
         public IActionResult Index()
         {
             var fermetures = GetFermeturesFromApi();
-            
+
             return View(fermetures.FirstOrDefault(f => f.ClosingDate > DateTime.UtcNow));
         }
 
@@ -33,10 +33,10 @@ namespace BridgeMonitor.Controllers
             return View(fermetures);
         }
 
-        public IActionResult Details()
+        public IActionResult Details(DateTime closingDate)
         {
             var fermetures = GetFermeturesFromApi();
-            return View(fermetures);
+            return View(fermetures.FirstOrDefault(f => f.ClosingDate == closingDate));
         }
 
         private static List<Fermetures> GetFermeturesFromApi()
