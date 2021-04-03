@@ -3,12 +3,12 @@
 @model Fermetures
 
 <h1>@ViewData["Title"]</h1>
-@{
-    TimeSpan diff = Model.ReopeningDate - Model.ClosingDate;
-    DateTime DtNow = DateTime.UtcNow;
-    TimeSpan ProchaineFermeture = Model.ClosingDate - DtNow;
-    var CompteARebours = "Aura lieu dans " + ProchaineFermeture.Days + " jour(s), " + ProchaineFermeture.Hours + " heure(s), " + ProchaineFermeture.Minutes + " minute(s) et " + ProchaineFermeture.Seconds + " seconde(s).";
-}
+@{ TimeSpan diff = Model.ReopeningDate - Model.ClosingDate;
+   DateTime DtNow = DateTime.UtcNow;
+   TimeSpan ProchaineFermeture = Model.ClosingDate - DtNow;
+   var CompteARebours = "Aura lieu dans " + ProchaineFermeture.Days + " jour(s), " + ProchaineFermeture.Hours + " heure(s), " + ProchaineFermeture.Minutes + " minute(s) et " + ProchaineFermeture.Seconds + " seconde(s).";
+ }
+
 
 <div class="card">
     <h5 class="card-header">
@@ -42,9 +42,7 @@
             <div class="alert alert-danger" role="alert">
                 Risque de bouchons élevé.
             </div>
-        }
-        else
-        {
+        } else {
             <div class="alert alert-success" role="alert">
                 Faible risque de bouchon.
             </div>
