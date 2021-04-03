@@ -1,8 +1,10 @@
 ﻿@{ ViewData["Title"] = "Prochaine fermeture"; }
 
-@model List<Fermetures>
+@model Fermetures
 
 <h1>@ViewData["Title"]</h1>
 
 <h2>Date et heure de la prochaine fermeture</h2>
 
+
+<h3>@Model.ClosingDate.ToString("dddd MMMM yyyy, HH:mm:ss")</h3>
